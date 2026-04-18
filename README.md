@@ -26,14 +26,14 @@ delivery-route-mini-project/
 
 This project implements the following strategies to tackle different facets of the routing problem:
 
-Task Focus   ,Algorithmic Strategy,Purpose,Time Complexity,Space Complexity
+```Task Focus   ,Algorithmic Strategy,Purpose,Time Complexity,Space Complexity
 Route Costing,Recurrence (Recursion),Calculate total distance for sequences.,O(N) per route,O(N) stack depth
 Parcel Selection (Fast),Greedy Algorithm,Maximize value using Value/Weight ratio.,O(NlogN),O(N)
 Parcel Selection (Optimal),Dynamic Programming,0/1 Knapsack to maximize value strictly within capacity constraints.,O(N×W),O(N×W)
 Pathfinding,Dijkstra's Algorithm,Navigate the absolute shortest path between two specific stops.,O(E+VlogV),O(V)
 Network Connectivity,Kruskal's/Prim's (MST),Find the Minimum Spanning Tree of the delivery network.,O(ElogE),O(V+E)
 Optimal Routing,TSP (Brute Force),Find the absolute optimal round-trip sequence hitting all customers.,O(N!),O(N)
-
+```
 🚀 Setup & Execution
 Prerequisites
 Python 3.10+
