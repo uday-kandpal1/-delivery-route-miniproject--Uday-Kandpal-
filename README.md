@@ -1,54 +1,66 @@
-Delivery Route Optimization — ADA Capstone Project
-Course: Analysis and Design of Algorithms (ADA)
+# E-Commerce Delivery Route Optimization 🚚
 
-Problem: Optimize parcel delivery for an e-commerce platform across 7 customer locations.
+**Course:** Analysis and Design of Algorithms (ADA) - Capstone Project  
+**Version:** `v1.0-submission`
 
-📂 Project Structure
-Plaintext
+## 📖 Overview
+E-commerce platforms face complex delivery challenges that combine time, cost, and vehicle constraints. The delivery routing problem involves selecting parcels, respecting delivery windows, and planning optimal travel paths. 
+
+This project integrates multiple algorithmic paradigms across the ADA syllabus to solve these challenges. It offers a hands-on exploration of algorithmic decision-making in real-world logistics, comparing Greedy approaches, Dynamic Programming, Graph Pathfinding, and the Traveling Salesman Problem (TSP).
+
+---
+
+## 📂 Project Structure
+
+```text
 delivery-route-mini-project/
 ├── notebooks/
-│   └── delivery_route_optimization.ipynb   ← main deliverable
-├── images/                                 ← plots generated at runtime
+│   └── delivery_route_optimization.ipynb   ← Main deliverable (Jupyter Notebook)
+├── images/                                 ← Plots generated at runtime
 │   ├── route_visualization.png
-│   ├── analysis_plots.png
-│   └── speed_comparison.png
-├── generate_notebook.py                    ← notebook generator script
-├── requirements.txt
-└── README.md
-📋 Tasks Covered
-Task	Description	Algorithm	Complexity
-1	Environment Setup	—	—
-2	Input Modeling	Distance matrix, parcels, vehicle	—
-3	Recurrence Route Cost	Recursive + Memoisation	O(n² · 2ⁿ)
-4a	Parcel Selection	Greedy (V/W ratio)	O(n log n)
-4b	Parcel Selection	DP 0/1 Knapsack	O(n · W)
-4c	Time Windows	Simulation	O(n)
-5a	Shortest Paths	Dijkstra	O((V+E) log V)
-5b	Connectivity	MST — Prim's	O(E log V)
-6	Optimal Sequence	TSP Held-Karp DP	O(n² · 2ⁿ)
-7	Profiling & Plots	Timing + Visualisation	—
-8	Summary & Reflection	Discussion	—
-🚀 Setup & Run
-Bash
-# 1. Install dependencies
+│   └── complexity_graphs.png
+├── requirements.txt                        ← Environment dependencies
+└── README.md                               ← Project documentation
+```
+🧠 Algorithms & Complexity Analysis
+
+This project implements the following strategies to tackle different facets of the routing problem:
+
+Task Focus   ,Algorithmic Strategy,Purpose,Time Complexity,Space Complexity
+Route Costing,Recurrence (Recursion),Calculate total distance for sequences.,O(N) per route,O(N) stack depth
+Parcel Selection (Fast),Greedy Algorithm,Maximize value using Value/Weight ratio.,O(NlogN),O(N)
+Parcel Selection (Optimal),Dynamic Programming,0/1 Knapsack to maximize value strictly within capacity constraints.,O(N×W),O(N×W)
+Pathfinding,Dijkstra's Algorithm,Navigate the absolute shortest path between two specific stops.,O(E+VlogV),O(V)
+Network Connectivity,Kruskal's/Prim's (MST),Find the Minimum Spanning Tree of the delivery network.,O(ElogE),O(V+E)
+Optimal Routing,TSP (Brute Force),Find the absolute optimal round-trip sequence hitting all customers.,O(N!),O(N)
+
+🚀 Setup & Execution
+Prerequisites
+Python 3.10+
+
+Git & GitHub
+
+1. Environment Setup
+Clone the repository and install the required dependencies:
+# Create and activate a virtual environment (optional but recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
+
+# Install libraries
 pip install -r requirements.txt
 
-# 2. Launch JupyterLab
+2. Running the Project
+Launch JupyterLab to interact with the code, view the profiling metrics, and generate the network graphs:
 jupyter lab notebooks/delivery_route_optimization.ipynb
 
-# 3. Run All Cells 
-# (In JupyterLab: Kernel → Restart & Run All)
-📦 Input Data
-Nodes: 8 nodes total. Warehouse (0) + Loc_A … Loc_G (1–7) with 2D coordinates.
+🔬 Discussion & ReflectionOptimization vs. Realism: The optimal TSP route strictly minimizes distance but ignores delivery time windows. Real-world logistics require complex
 
-Parcels: 7 parcels. Value ∈ {80–200 Rs}, Weight ∈ {3–10 kg}, with 24h time windows.
+heuristic models (like TSPTW) to balance shortest distance with strict delivery deadlines.Algorithm Trade-offs: The Greedy algorithm proved exceptionally fast ($O(N \log 
 
-Vehicle: Max capacity = 25 kg, Speed = 10 units/hr, Departs at 08:00.
+N)$) but occasionally missed the mathematical optimum. DP guaranteed the highest profit but at a massive memory cost ($O(N \times W)$) when vehicle capacity scaled up.The NP-
 
-📊 Key Results (Example Run)
-Metric	Value
-DP-Optimal Parcel Value	550 Rs
-TSP Route Distance	~18–22 units
-Greedy Time	< 0.01 ms
-TSP Time (n=7)	< 5 ms
+Hard Challenge: The Brute-Force TSP algorithm scales factorially ($O(N!)$). Profiling demonstrated that while $N=5$ evaluates instantly, $N \ge 12$ becomes computationally
+
+infeasible on standard hardware, proving why enterprise logistics rely on approximation algorithms rather than perfect solvers.
+
 Version: v1.0-submission — ADA Capstone Final Submission
